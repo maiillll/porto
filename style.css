@@ -109,41 +109,35 @@ nav ul li a.active {
     color: var(--secondary-text-color);
     font-size: 1rem;
 }
-
 .hero-image {
     position: relative;
+    /* Jika Anda ingin membatasi keseluruhan area gambar menjadi lebih kecil */
+    max-width: 350px; /* Sesuaikan sesuai kebutuhan */
 }
 
 .hero-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
+    width: 300px; /* Ubah ini untuk ukuran lebar yang lebih kecil */
+    height: 300px; /* Ubah ini untuk ukuran tinggi yang lebih kecil */
+    object-fit: cover; /* Pastikan gambar tidak terdistorsi */
+    border-radius: 50%; /* Untuk membuat gambar menjadi lingkaran */
     z-index: 2;
     position: relative;
 }
 
-/* Abstract shapes for background */
-.hero-image .shape {
-    position: absolute;
-    background: var(--primary-color);
-    filter: blur(50px);
-    opacity: 0.5;
-    border-radius: 50%;
-}
-
+/* ... Kode untuk shape-1 dan shape-2 mungkin perlu disesuaikan posisinya */
 .hero-image .shape-1 {
-    width: 200px;
-    height: 200px;
-    top: -50px;
-    right: -50px;
+    width: 150px; /* Sesuaikan ukuran shape */
+    height: 150px;
+    top: -30px; /* Sesuaikan posisi relatif terhadap gambar yang lebih kecil */
+    right: -30px;
     z-index: 1;
 }
 
 .hero-image .shape-2 {
-    width: 150px;
-    height: 150px;
-    bottom: -30px;
-    left: -30px;
+    width: 100px; /* Sesuaikan ukuran shape */
+    height: 100px;
+    bottom: -20px;
+    left: -20px;
     z-index: 1;
     background: #ff5e00;
 }
