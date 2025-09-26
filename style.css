@@ -1,12 +1,17 @@
-/* General Styling */
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===== CSS Variables ===== */
 :root {
     --primary-color: #FF9900;
     --dark-bg: #121212;
     --text-color: #FFFFFF;
     --secondary-text-color: #A7A7A7;
     --card-bg: rgba(45, 45, 45, 0.5);
+    --border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* ===== Base Styles ===== */
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +22,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--dark-bg);
     color: var(--text-color);
+    line-height: 1.6;
 }
 
 .container {
@@ -25,9 +31,15 @@ body {
     padding: 0 2rem;
 }
 
-/* Header & Navigation */
+/* ===== Header & Navigation ===== */
 header {
     padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    background-color: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav {
@@ -52,6 +64,7 @@ nav ul {
 nav ul li a {
     text-decoration: none;
     color: var(--secondary-text-color);
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
@@ -66,27 +79,34 @@ nav ul li a.active {
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 500;
-    transition: transform 0.3s ease;
+    font-weight: 600;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .btn-primary:hover {
     transform: scale(1.05);
+    background-color: #ffaf33;
 }
 
-/* Hero Section */
+/* ===== Hero Section ===== */
 #hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4rem 2rem;
-    gap: 2rem;
+    padding: 5rem 0;
+    gap: 3rem;
+    min-height: 80vh;
+}
+
+.hero-text {
+    flex: 1;
 }
 
 .hero-text h1 {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .hero-text h1 span {
@@ -103,6 +123,7 @@ nav ul li a.active {
 .stats h2 {
     font-size: 2rem;
     color: var(--primary-color);
+    margin: 0;
 }
 
 .stats p {
@@ -111,44 +132,51 @@ nav ul li a.active {
 }
 .hero-image {
     position: relative;
-    /* Jika Anda ingin membatasi keseluruhan area gambar menjadi lebih kecil */
-    max-width: 350px; /* Sesuaikan sesuai kebutuhan */
+    flex: 0 0 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-image img {
-    width: 300px; /* Ubah ini untuk ukuran lebar yang lebih kecil */
-    height: 300px; /* Ubah ini untuk ukuran tinggi yang lebih kecil */
-    object-fit: cover; /* Pastikan gambar tidak terdistorsi */
-    border-radius: 50%; /* Untuk membuat gambar menjadi lingkaran */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--card-bg);
     z-index: 2;
     position: relative;
 }
 
-/* ... Kode untuk shape-1 dan shape-2 mungkin perlu disesuaikan posisinya */
-.hero-image .shape-1 {
-    width: 150px; /* Sesuaikan ukuran shape */
+.hero-image .shape {
+    position: absolute;
+    border-radius: 30%;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.shape-1 {
+    width: 150px;
     height: 150px;
-    top: -30px; /* Sesuaikan posisi relatif terhadap gambar yang lebih kecil */
-    right: -30px;
-    z-index: 1;
+    background: var(--primary-color);
+    top: -30px;
+    right: 0px;
 }
 
-.hero-image .shape-2 {
-    width: 100px; /* Sesuaikan ukuran shape */
-    height: 100px;
-    bottom: -20px;
-    left: -20px;
-    z-index: 1;
+.shape-2 {
+    width: 120px;
+    height: 120px;
     background: #ff5e00;
+    bottom: -20px;
+    left: 20px;
 }
 
-
-/* Services Section */
-#services {
-    padding: 4rem 2rem;
+/* ===== Services & Portfolio Section ===== */
+section {
+    padding: 5rem 0;
 }
 
-#services h2, #portfolio h2 {
+section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -163,14 +191,19 @@ nav ul li a.active {
 
 .card {
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 2rem;
-    width: 300px;
+    width: 280px;
     text-align: center;
-    /* Glassmorphism Effect */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 153, 0, 0.5);
 }
 
 .card h3 {
@@ -183,37 +216,121 @@ nav ul li a.active {
     color: var(--secondary-text-color);
 }
 
-/* Portfolio Section */
-#portfolio {
-    padding: 4rem 2rem;
-}
-
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
-.portfolio-item img {
-    width: 100%;
-    height: auto;
+.portfolio-item {
+    background: var(--card-bg);
     border-radius: 12px;
-    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
 }
-
-.portfolio-item h3 {
+.portfolio-item:hover {
+    transform: translateY(-5px);
+}
+.portfolio-item img, .portfolio-item iframe {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    border: none;
+}
+.portfolio-item-content {
+    padding: 1.5rem;
+}
+.portfolio-item-content h3 {
     font-size: 1.25rem;
     margin-bottom: 0.25rem;
 }
-
-.portfolio-item p {
+.portfolio-item-content p {
     color: var(--secondary-text-color);
 }
 
-/* Footer */
+/* ===== Contact Section (Custom) ===== */
+.contact-wrapper {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    gap: 3rem;
+}
+.contact-form { flex: 2; }
+.contact-info { flex: 1; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text-color);
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: rgba(0,0,0,0.2);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
+}
+.contact-info h3 { font-size: 1.5rem; color: var(--primary-color); }
+.contact-info p { color: var(--secondary-text-color); margin-bottom: 1.5rem;}
+.info-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--secondary-text-color); }
+.info-item i { font-size: 1.5rem; color: var(--primary-color); }
+
+/* ===== Footer ===== */
 footer {
     text-align: center;
-    padding: 2rem 0;
+    padding: 3rem 0;
     margin-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-color);
+}
+.social-links a {
+    color: var(--secondary-text-color);
+    font-size: 1.8rem;
+    margin: 0 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+footer p {
+    margin-top: 1.5rem;
+    color: var(--secondary-text-color);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+    #hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 0;
+    }
+    .hero-text h1 { font-size: 2.8rem; }
+    .hero-text p { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* Sembunyikan untuk desain mobile yang lebih advanced */
+    }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-image { flex-basis: 300px; }
+    .hero-image img { width: 250px; height: 250px; }
+    section h2 { font-size: 2rem; }
+    .contact-wrapper { flex-direction: column; padding: 2rem; }
 }
